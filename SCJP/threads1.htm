@@ -1,0 +1,167 @@
+<html><head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="description" content="Java certification practice questions: SCJP 1.4 Question on threads.">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="keywords" content="java certification, threads, scjp, scjp 1.4, declaration and access control, simulationexams.com">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Java certification questions -SCJP Threads</title>
+<style fprolloverstyle="">A:hover {color: #FF0000}
+</style>
+</head><body link="#000080"><!--webbot bot="Include"
+U-Include="../../../_includes/certification-header-long.htm" TAG="BODY" startspan -->
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" height="75">
+    <tbody><tr>
+      <td bordercolor="#FFFFFF" valign="top" width="100%" bgcolor="#bbbbbb" height="22"><img src="threads1_files/top_ri1.gif" alt="Certification tests" width="100%" border="0" height="8"></td>
+      <td bordercolor="#FFFFFF" colspan="2" valign="top" bgcolor="#bbbbbb" height="22"><img src="threads1_files/top_ri1.gif" alt="Certification training" width="100%" border="0" height="8"></td>
+      <td bordercolor="#FFFFFF" valign="top" align="left" bgcolor="#c0c0c0" height="22"><map name="FPMap0">
+        <area href="http://www.simulationexams.com/about.htm" coords="130, 2, 177, 19" shape="rect">
+        <area href="http://www.simulationexams.com/search.htm" shape="rect" coords="185, 3, 234, 18">
+        <area href="http://www.simulationexams.com/webpages/faq.htm" shape="rect" coords="246, 0, 286, 20"></map><img src="threads1_files/top_right.gif" usemap="#FPMap0" alt="Certification tests mcse ccna a+" width="306" border="0" height="22"></td>
+      
+    </tr>
+    <tr>
+      <td bordercolor="#FFFFFF" colspan="4" valign="top" width="100%" bgcolor="#bbbbbb" height="55"><img src="threads1_files/practice_tests.gif" alt="Practice Tests CCNA MCSE A+ Network+ " width="204" border="0" height="49">&nbsp;&nbsp;<font size="2" color="#800000" face="Arial">IT
+        Certification Practice Exams&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+ </tbody></table>
+ <table width="100%" border="0" cellpadding="0" cellspacing="0" height="18">
+    <tbody><tr>
+      <td bordercolor="#FFFFFF" valign="top" bgcolor="#e5e5e5" height="18"><font size="2" color="#800000" face="Arial">&nbsp;&nbsp;</font></td>
+      <td bordercolor="#FFFFFF" valign="top" align="right" bgcolor="#e5e5e5" height="18"><font face="Arial"><b><a href="http://www.simulationexams.com/index.htm"><font size="2" color="#000080">HOME</font></a></b><font size="2" color="#800000" face="Arial">&nbsp;
+        |&nbsp;</font><font size="2" color="#000080"><a href="http://www.simulationexams.com/ciscoTests.htm"><b>Cisco</b></a><b>&nbsp;
+        |&nbsp;</b><a href="http://www.simulationexams.com/comptia.htm"><b>CompTIA</b></a></font><font size="2" color="#800000" face="Arial">&nbsp;
+        |&nbsp;</font><font size="2" color="#800000"><a href="http://www.simulationexams.com/OracleCertificationExams.htm"><b>Oracle</b></a>
+        } <b><a href="http://www.simulationexams.com/java-certification-exams.htm">SCJP</a></b> } </font><font size="2" color="#000080"><a href="http://www.simulationexams.com/checkpoint.htm"><b>CheckPoint</b></a><b>&nbsp;|
+        </b><a href="http://www.simulationexams.com/ciw_exams.htm"><b>CIW</b></a><b>&nbsp;|&nbsp;</b><a href="http://www.simulationexams.com/webpages/MicrosoftTest1.htm"><b>Microsoft</b></a><b>&nbsp;</b></font><font size="2" color="#800000" face="Arial">|
+        <a href="http://www.simulationexams.com/books/books.htm"><b>Books</b></a>
+        </font><font size="2" color="#000080"><b>| <a href="http://www.simulationexams.com/bootcamp/bootcamp.htm"> Bootcamp</a> |</b></font><font size="2" color="#800000" face="Arial">&nbsp;
+        </font><font size="2" color="#000080"><a href="http://www.simulationexams.com/order.htm"><b>Buy
+      Now!</b></a></font></font></td>
+    </tr>
+  </tbody></table>
+
+<!--webbot bot="Include" endspan i-checksum="6669" -->
+
+<p align="center"><font size="1" face="Comic Sans MS"><b><!--webbot
+bot="PurpleText"
+PREVIEW="Free practice questions for  Java Certification SCJP Sun Certified Java Programer Exam, simulation / certificaiton / prep exams."
+-->
+</b></font></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td>
+<h1 align="center"><font size="2" face="Verdana">Java Certification: SCJP - Sun Certified
+Java Programmer Exam&nbsp;</font></h1>
+
+<h2 align="center"><font size="2" face="Verdana">
+Practice Questions: Exam SCJP 1.6<br>
+<span style="">Declaration
+and Access Control</span></font></h2>
+
+    </td>
+    <td rowspan="7" valign="top" width="160" height="600"><!--webbot
+      bot="Include"
+      U-Include="../../../_includes/certfication-banner-scjp-120X600.htm"
+      TAG="BODY" startspan -->
+
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+            <td></td>
+          </tr>
+        </tbody></table>
+
+<!--webbot
+      bot="Include" endspan i-checksum="16168" -->
+
+      <p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="967">
+
+<p><a href="http://www.simulationexams.com/"><font size="2" face="Verdana">Home</font></a><font size="2" face="Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.simulationexams.com/SampleQuestions/java-certification/scjp/java-certification-questions.htm">Up</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://www.simulationexams.com/SampleQuestions/java-certification/scjp/scjp_q7.htm">Previous</a>&nbsp;&nbsp;&nbsp; <a name="Nextccnaq1" href="http://www.simulationexams.com/SampleQuestions/java-certification/scjp/scjp_q9.htm">Next</a></font></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="967">
+<font size="2">
+</font><p><font size="2"><font size="2" face="Verdana">Q8. A monitor called <span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">mon</span>
+has 5 threads in its waiting pool; all these waiting threads&nbsp;<span style="">&nbsp;
+</span>have the same priority. One of the threads is <span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">thread1</span>. How can you notify <span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">thread1&nbsp;</span><span style="">&nbsp;
+</span>so that<span style="">&nbsp; </span>it alone moves from
+Waiting state to Ready State?</font></font></p>
+<p class="MsoNormal"><font size="2">&nbsp;</font></p>
+<font size="2">      </font></td>
+  </tr>
+  <tr>
+    <td width="967">
+<font size="2">
+</font><p style="margin: 0in 0in 0.0001pt 48pt; text-indent: -0.25in;"><font size="2"><font size="2" face="Verdana">A.<span style="font-style: normal; font-variant: normal; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Execute <span style="">notify(thread1);</span>
+from within synchronized code of mon.</font></font></p>
+<p style="margin: 0in 0in 0.0001pt 48pt; text-indent: -0.25in;"><font size="2"><font size="2" face="Verdana">B.<span style="font-style: normal; font-variant: normal; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Execute <span style="">mon.notify(thread1);</span>
+from synchronized code of any object.</font></font></p>
+<p style="margin: 0in 0in 0.0001pt 48pt; text-indent: -0.25in;"><font size="2"><font size="2" face="Verdana">C.<span style="font-style: normal; font-variant: normal; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Execute <span style="">thread1.notify();</span>
+from synchronized code of any object.</font></font></p>
+<p style="margin: 0in 0in 0.0001pt 48pt; text-indent: -0.25in;"><font size="2"><font size="2" face="Verdana">D.<span style="font-style: normal; font-variant: normal; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Execute <span style="">thread1.notify();</span>
+from any code(synchronized or not) of any object.</font></font></p>
+<p style="margin: 0in 0in 0.0001pt 48pt; text-indent: -0.25in;"><font size="2"><font size="2" face="Verdana">E.&nbsp;&nbsp;&nbsp;&nbsp; <span style="">You
+cannot specify which thread will get notified.</span></font>
+      </font> 
+    </p></td>
+  </tr>
+  <tr>
+    <td width="967">
+<font size="2">
+<p style="background-color: rgb(128, 128, 128);"><font size="2" face="Verdana">Correct Answer:
+<span style="font-size: 12pt; font-family: Times New Roman;">E</span></font></p>
+</font>
+
+      <p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="967">
+<font size="2">
+<p><font size="2" face="Verdana">Explanation:<br>
+<br>
+</font>E is correct, when you call notify() on a monitor, you have no control
+over which waiting thread gets notified.</p>
+<p>&nbsp;</p>
+
+</font> 
+
+    </td>
+  </tr>
+  <tr>
+    <td width="967"></td>
+  </tr>
+</tbody></table>
+<font size="2">
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+</font>
+
+<p><font size="2" face="Verdana"><a href="http://www.simulationexams.com/">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.simulationexams.com/SampleQuestions/java-certification/scjp/java-certification-questions.htm">Up</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.simulationexams.com/SampleQuestions/java-certification/scjp/scjp_q7.htm">Previous</a>
+&nbsp;&nbsp; <a name="Nextccnaq1" href="http://www.simulationexams.com/SampleQuestions/java-certification/scjp/scjp_q9.htm">Next</a></font></p>
+
+<p align="center"><font size="1" face="Comic Sans MS"><b><!--webbot
+bot="PurpleText"
+PREVIEW="Free practice questions Simulation Exams: Sun Java Certification exam practice questions from http://www.simulationexams.com
+"
+-->
+Email: <a href="mailto:test@simulationexams.com">test@simulationexams.com</a></b></font></p>
+
+<p>&nbsp;</p>
+
+</body></html>

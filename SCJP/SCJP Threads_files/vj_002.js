@@ -1,0 +1,1 @@
+document.write("<"+"a href=\"http://aj.600z.com/aj/26273/0/cj?ajkey=V12DD9B0684G23BA25D0A3BA25D0AK92140K92141K35778I144QQP0G0009\" target=\"_blank\"><"+"img src=\"http://img.600z.com/mg/Client19239/1285686970021_unica_0928_750x100.gif\" height=\"100\" width=\"750\" border=\"0\" alt=\"\"><"+"/a>");

@@ -1,0 +1,1 @@
+document.write("<"+"a href=\"http://aj.600z.com/aj/65479/0/cj?ajkey=V12BC2B2C6FG23BA25D0A3BA25D0AK92481K92392QK65096QQP0G0060\"><"+"img src=\"http://images.ientrymail.com/ads/jiveicon.png\" width=\"25\" height=\"25\" border=\"0\">Free Webcast: Generate Revenue<"+"/a>");

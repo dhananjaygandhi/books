@@ -1,0 +1,102 @@
+#wibiyaNewPop *{font-family:Arial,Verdana;text-align:left;padding:0;margin:0;}
+#wibiyaToolbar .newsbox_small{
+width:313px;
+}
+#wibiyaToolbar .newsbox_wide{
+width:363px;
+}
+#wibiyaToolbar .newsbox_wide #newsheader{
+background:url('http://cdn.wibiya.com/Graphics_Website/dashboard/notifier_blue_wide.png') no-repeat top left;
+height:38px;
+line-height:38px;
+}
+#wibiyaToolbar .newsbox_small #newsheader{
+background:url('http://cdn.wibiya.com/Graphics_Website/dashboard/notifier_blue_small.png') no-repeat top left;
+height:34px;
+line-height:34px;
+}
+#wibiyaToolbar #newsheader .title{
+color:#3C3C3C;
+float:left;
+font-size:12px;
+font-weight:bold;
+height:28px;
+line-height:28px;
+margin:4px 0 0 15px;
+overflow:hidden;
+width:255px;
+}
+#wibiyaToolbar .newsbox_wide #newsheader .title{
+margin-top:9px;
+width:305px;
+}
+#wibiyaToolbar #newsheader .title img{
+vertical-align:middle;
+}
+#wibiyaToolbar .newsbox_wide .PopX{
+background:url('http://cdn.wibiya.com/Graphics_Website/dashboard/notifier_blue_wide.png') no-repeat -7px -58px;
+float:right;
+height:18px;
+margin-right:15px;
+margin-top:14px;
+width:18px;
+}
+#wibiyaToolbar .newsbox_small .PopX{
+background:url('http://cdn.wibiya.com/Graphics_Website/dashboard/notifier_blue_small.png') no-repeat -7px -52px;
+float:right;
+height:18px;
+margin-right:15px;
+margin-top:9px;
+width:18px;
+}
+#wibiyaToolbar .newsbox_wide .PopX:hover{
+background-position:-26px -58px;
+}
+#wibiyaToolbar .newsbox_small .PopX:hover{
+background-position:-26px -52px;
+}
+#wibiyaToolbar #newsheader .PopX span{
+display:none;
+}
+#wibiyaToolbar #newscontent{
+min-height:110px;
+padding:0 10px;
+width:100%;
+}
+#wibiyaToolbar .newsbox_wide #newscontent{
+background:url('http://cdn.wibiya.com/Graphics_Website/dashboard/notifier_blue_wide.png') repeat-y -366px top;
+}
+#wibiyaToolbar .newsbox_small #newscontent{
+background:url('http://cdn.wibiya.com/Graphics_Website/dashboard/notifier_blue_small.png') repeat-y -314px top;
+}
+#newsimg, #newstext{ vertical-align:top; }
+#wibiyaToolbar #newsimg{ text-align:center; }
+#wibiyaToolbar #newsimg img{
+padding:10px !important;
+}
+#wibiyaToolbar #newstext{
+padding:8px 8px 4px;
+}
+#wibiyaToolbar #newstext .head,
+#wibiyaToolbar #newstext .head a{
+color:#3C536C;
+font-size:15px;
+font-weight:bold;
+line-height:22px;
+margin-bottom:4px;
+}
+#wibiyaToolbar #newstext .text,#wibiyaToolbar #newstext .notifierinnertext{
+color:#3B6086;
+font-size:12px;
+font-weight:bold;
+line-height:17px;
+}
+#wibiyaToolbar .newsbox_small .head,#wibiyaToolbar .newsbox_small .text {padding:0 5px;}
+#wibiyaToolbar .newsbox_wide #newsbottom{
+height:18px;
+background:url('http://cdn.wibiya.com/Graphics_Website/dashboard/notifier_blue_wide.png') no-repeat left -38px;
+}
+#wibiyaToolbar .newsbox_small #newsbottom{
+height:18px;
+background:url('http://cdn.wibiya.com/Graphics_Website/dashboard/notifier_blue_small.png') no-repeat left -34px;
+}

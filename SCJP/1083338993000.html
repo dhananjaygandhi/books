@@ -1,0 +1,1294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- base href="http://radio.javaranch.com/corey/" -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Corey's SCJP Tipline, etc. - Thread Synchronization</title>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://radio.javaranch.com/corey/rss.xml">
+    <link rel="alternate" type="application/rdf+xml" title="RDF" href="http://radio.javaranch.com/corey/rdf.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://radio.javaranch.com/corey/atom.xml">
+
+    
+      
+      
+        
+        <link rel="stylesheet" href="1083338993000_files/theme.css" type="text/css">
+        
+      
+    
+
+    
+    <script type="text/javascript" src="1083338993000_files/pebble.js">
+    </script>
+    
+  </head><body>
+    <div class="bodyContent">
+
+
+
+<div class="header">
+  <div class="search">
+    <form method="get" action="search.action" accept-charset="UTF-8">
+      <input name="query" type="text">&nbsp;<input value="Search" type="submit">
+    </form>
+  </div>
+  <div class="blogName">
+    <a href="http://radio.javaranch.com/corey/">Corey's SCJP Tipline, etc.</a>
+  </div>
+  <div class="blogDescription">
+    Tips and Tidbits from someone Sun felt was Certifiable
+  </div>
+  <br>
+
+  <div>
+    <span class="headerLinks">
+      <a href="http://radio.javaranch.com/corey/today.html" title="Summary of today">Today</a> |
+      <a href="http://radio.javaranch.com/corey/rss.xml" title="RSS 2.0 feed for this blog">???common.rss???</a> |
+      <a href="http://radio.javaranch.com/corey/rdf.xml" title="RDF 1.0 feed for this blog">???common.rdf???</a> |
+      <a href="http://radio.javaranch.com/corey/atom.xml" title="Atom 0.3 feed for this blog">???common.atom???</a> |
+      <a href="http://radio.javaranch.com/corey/viewFeeds.action" title="See the XML feeds available for this blog">???common.other???</a>
+    </span>
+    <span class="small">
+      <form method="get" action="changeCategory.action">
+        <select name="category"><option value="all">All Categories</option><option value="/">All</option><option value="/collections">SCJP Tips: Collections</option><option value="/decAndAccessControl">SCJP Tips: Declarations and Access Control</option><option value="/flowControl">SCJP Tips: Flow Control, Assertions, and Exception Handling</option><option value="/garbageCollection">SCJP Tips: Garbage Collection</option><option value="/java_lang_Package">SCJP Tips: Fundamental Classes in the java.lang Package</option><option value="/languageFundamentals">SCJP Tips: Language Fundamentals</option><option value="/misc">Miscellaneous</option><option value="/operatorsAndAssignments">SCJP Tips: Operators and Assignments</option><option value="/overloadingEtc">SCJP Tips: Overloading, Overriding, Runtime Type and Object Orientation</option><option value="/scjp">SCJP Thoughts</option><option value="/scjp_misc">SCJP Tips: Miscellaneous</option><option value="/scjptips">SCJP Tips</option><option value="/threads">SCJP Tips: Threads</option></select>&nbsp;<input value="Change Category" type="submit">
+      </form>
+    </span>
+  </div>
+</div>
+
+<div class="sidebar">
+  <!--
+ 
+
+
+
+
+<div>
+  <div class="calendar"><table width="100%"><tr><td colspan="7" align="center"><b><a href="http://radio.javaranch.com/corey/2004/04.html">April 2004</a></b></td></tr><tr><td class="calendarDayHeader" width="14%">Mon</td><td class="calendarDayHeader" width="14%">Tue</td><td class="calendarDayHeader" width="14%">Wed</td><td class="calendarDayHeader" width="14%">Thu</td><td class="calendarDayHeader" width="14%">Fri</td><td class="calendarDayHeader" width="14%">Sat</td><td class="calendarDayHeader">Sun</td></tr><tr><td class="calendarDay">&nbsp;</td><td class="calendarDay">&nbsp;</td><td class="calendarDay">&nbsp;</td><td class="calendarDay">&nbsp;1&nbsp;</td><td class="calendarDay">&nbsp;2&nbsp;</td><td class="calendarDay">&nbsp;3&nbsp;</td><td class="calendarDay">&nbsp;4&nbsp;</td></tr><tr><td class="calendarDayWithEntries">&nbsp;<a href="http://radio.javaranch.com/corey/2004/04/05.html">5</a>&nbsp;</td><td class="calendarDay">&nbsp;6&nbsp;</td><td class="calendarDay">&nbsp;7&nbsp;</td><td class="calendarDay">&nbsp;8&nbsp;</td><td class="calendarDay">&nbsp;9&nbsp;</td><td class="calendarDay">&nbsp;10&nbsp;</td><td class="calendarDay">&nbsp;11&nbsp;</td></tr><tr><td class="calendarDayWithEntries">&nbsp;<a href="http://radio.javaranch.com/corey/2004/04/12.html">12</a>&nbsp;</td><td class="calendarDayWithEntries">&nbsp;<a href="http://radio.javaranch.com/corey/2004/04/13.html">13</a>&nbsp;</td><td class="calendarDay">&nbsp;14&nbsp;</td><td class="calendarDayWithEntries">&nbsp;<a href="http://radio.javaranch.com/corey/2004/04/15.html">15</a>&nbsp;</td><td class="calendarDay">&nbsp;16&nbsp;</td><td class="calendarDay">&nbsp;17&nbsp;</td><td class="calendarDay">&nbsp;18&nbsp;</td></tr><tr><td class="calendarDayWithEntries">&nbsp;<a href="http://radio.javaranch.com/corey/2004/04/19.html">19</a>&nbsp;</td><td class="calendarDayWithEntries">&nbsp;<a href="http://radio.javaranch.com/corey/2004/04/20.html">20</a>&nbsp;</td><td class="calendarDayWithEntries">&nbsp;<a href="http://radio.javaranch.com/corey/2004/04/21.html">21</a>&nbsp;</td><td class="calendarDay">&nbsp;22&nbsp;</td><td class="calendarDay">&nbsp;23&nbsp;</td><td class="calendarDay">&nbsp;24&nbsp;</td><td class="calendarDay">&nbsp;25&nbsp;</td></tr><tr><td class="calendarDayWithEntries">&nbsp;<a href="http://radio.javaranch.com/corey/2004/04/26.html">26</a>&nbsp;</td><td class="calendarDay">&nbsp;27&nbsp;</td><td class="calendarDay">&nbsp;28&nbsp;</td><td class="calendarDay">&nbsp;29&nbsp;</td><td class="calendarDayWithEntries">&nbsp;<a href="http://radio.javaranch.com/corey/2004/04/30.html">30</a>&nbsp;</td><td class="calendarDay">&nbsp;</td><td class="calendarDay">&nbsp;</td></tr><tr><td colspan="7" align="center"><a href="http://radio.javaranch.com/corey/2004/03.html">Mar</a>&nbsp; | &nbsp;<a href="http://radio.javaranch.com/corey/2010/10/03.html">Today</a>&nbsp; | &nbsp;<a href="http://radio.javaranch.com/corey/2004/05.html">May</a></td></tr></table></div>
+
+  
+
+  <br />
+
+  <div>
+    <b>Recent Blog Entries</b>
+    <br />
+    
+  </div>
+
+  
+  
+
+  <br />
+  <div>
+    <b>Recent Responses</b>
+    <br />
+    
+      <div class="small">
+        <a href="http://radio.javaranch.com/corey/2004/04/13/1081891785000.html#comment1167389432475" title="http://radio.javaranch.com/corey/2004/04/13/1081891785000.html#comment1167389432475">Re: Cultural Differences and the SCJP Exam</a>
+        <br />
+        In Pakistan a SCJP tag helps fresh CS graduates in an interview call. But once in interview certification does not matter. If company have to select one guy out of two who scored in interviews then SCJP is preferred. Europeon clients perfer certified p...
+        
+        <br /><br />
+        
+      </div>
+    
+      <div class="small">
+        <a href="http://radio.javaranch.com/corey/2004/05/04/1083684417000.html#comment1163661713440" title="http://radio.javaranch.com/corey/2004/05/04/1083684417000.html#comment1163661713440">Re: Inner Classes</a>
+        <br />
+        Above provided information cleared Many of my ambigious thoughts regarding Inner class concepts.
+        
+        <br /><br />
+        
+      </div>
+    
+      <div class="small">
+        <a href="http://radio.javaranch.com/corey/2004/04/19/1082390724000.html#comment1163438299973" title="http://radio.javaranch.com/corey/2004/04/19/1082390724000.html#comment1163438299973">Re: Object Initialization Sequence</a>
+        <br />
+        A minor modification to the original code, o/p is quite interesting..
+ 
+class Parent{ 
+    int a = getA(); 
+	int i=0; 
+	{ 
+        System.out.println(+...
+        
+      </div>
+    
+  </div>
+  
+
+  <br />
+
+  
+
+</div>-->
+
+<table width="99%">
+
+  <tbody><tr class="itemBody" align="center">
+    <td>
+      <a href="http://radio.javaranch.com/corey/pages/toc.html"><b>Table of Contents</b></a><br><br>
+    </td>
+  </tr>
+
+  <tr class="itemBody" align="center">
+    <td>
+      <b>Links</b>
+      <br>
+      <div class="small"><a href="http://saloon.javaranch.com/cgi-bin/ubb/ultimatebb.cgi?ubb=forum&amp;f=24&amp;SUBMIT=Go">JavaRanch SCJP Forum</a></div>
+      <div class="small"><a href="http://java.sun.com/j2se/1.4.2/docs/api/index.html">J2SE API Specifcation</a></div>
+      <div class="small"><a href="http://java.sun.com/docs/books/jls/second_edition/html/jTOC.doc.html">Java Language Specification</a></div>
+      <div class="small"><a href="http://suned.sun.com/US/certification/java/java_progj2se.html">Sun's SCJP Cert Info</a></div>
+    </td>
+  </tr>
+
+<!--
+  <tr class="itemBody" align="center">
+    <td>
+      <b>Other Blogs</b>
+      <br />
+      <div class="small"><a href="http://radio.javaranch.com/channel/pascarello/">Eric's weblog</a></div>
+      <div class="small"><a href="http://www.themcglones.net/blog.html">My personal blog</a></div>
+      <br />
+    </td>
+  </tr>
+-->
+
+  <tr class="itemBody" align="center">
+    <td>
+      <b>Currently Playing</b>
+    </td>
+  </tr>
+
+
+  <tr class="itemBody" align="center">
+    <td>
+      <br>
+        <a href="http://www.davematthewsband.com/"><img src="1083338993000_files/nowPlaying.jpg" width="160" border="0"></a>
+      <br>
+      <div class="small"><a href="http://www.davematthewsband.com/">Recently, Dave Matthew's Band</a></div>
+    </td>
+  </tr>
+
+
+
+</tbody></table>
+
+<br>
+</div>
+
+<div class="content">
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+<div class="linearNavigationLinks">
+  
+    &lt;&lt; <a href="http://radio.javaranch.com/corey/2004/04/26/1082990341000.html">Hashcodes</a> |
+  
+  <a href="http://radio.javaranch.com/corey/">Home</a>
+  
+    | <a href="http://radio.javaranch.com/corey/2004/05/03/1083597507000.html">Threads and GUIs</a> &gt;&gt;
+  
+</div>
+
+
+
+  
+  
+  
+<div class="blogEntry approved">
+  
+
+
+  <div class="blogEntryHeader">
+    <span class="blogEntryLinks">
+      
+      
+      
+      
+      
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html">Permalink</a><br>
+      
+        [<a href="http://radio.javaranch.com/corey/categories/scjptips/">SCJP Tips</a>]
+      
+        [<a href="http://radio.javaranch.com/corey/categories/operatorsAndAssignments/">SCJP Tips: Operators and Assignments</a>]
+      
+        [<a href="http://radio.javaranch.com/corey/categories/threads/">SCJP Tips: Threads</a>]
+      
+    </span>
+    <span class="blogEntryTitle">
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html" name="a1083338993000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html">Thread Synchronization</a>
+    </span>
+    <br>
+    <span class="blogEntrySubtitle">
+    
+    </span>
+  </div>
+
+  <div class="blogEntryBody">
+    
+      
+        
+        <p>
+Once again, I'm going to start right off with a mock exam question I
+made up. Take a look at this and see what you come up with for an
+answer.
+</p>
+<table width="100%">
+<tbody><tr>
+<td class="code">
+What is the result of compiling and running the following code? Select the one correct answer.
+<pre>
+class Q010 implements Runnable
+{
+    String semaphore = new String("");
+    String name = new String("");
+    
+    public Q010(String n)
+    {
+        name = n;
+        Q010a.getLock(semaphore);
+    }
+    
+    public void run()
+    {
+        synchronized(semaphore)
+        {
+            for ( int i = 0; i &lt; 10; i++ )
+            {
+                System.out.println("Message from " + name + ".");
+            }
+        }   
+    }
+}
+
+public class Q010a
+{
+    private static String s = new String("g");
+    
+    public static void main(String[] args)
+    {
+        Q010 q1 = new Q010("q1");
+        Q010 q2 = new Q010("q2");
+        
+        Thread t1 = new Thread(q1);
+        Thread t2 = new Thread(q2);
+        
+        t1.start();
+        t2.start();
+    }
+    
+    static void getLock(Object o)
+    {
+        o = s;
+    }
+}
+</pre>
+<br>
+<b>A.</b> Compilation Error<br>
+<br>
+<b>B.</b> The output consists of 10 lines of "Message from q1" followed by 10 lines of "Message from q2".<br>
+<br>
+<b>C.</b> The output consists of 10 lines of "Message from q2" followed by 10 lines of "Message from q1".<br>
+<br>
+<b>D.</b> The output consists of 10 lines of "Message from q2" and 10
+lines of "Message from q1" but we can not determine which block will
+appear first.<br>
+<br>
+<b>E.</b> We can not determine the output.
+</td>
+</tr>
+</tbody></table>
+<p>
+So what did you mark as an answer?
+</p>
+<p>
+First of all, this code, although not especially pretty, compiles fine, so A is not the correct choice.
+</p>
+<p>
+If you selected B or C, you'd be wrong, as well. It's up to the
+underlying operating system to actually start a thread so we have no
+idea which thread, t1 or t2, will actually enter the running state
+first. Therefore, we can't be sure which line will be output first.
+</p>
+<p>And if you answered D, you'd be close, but still wrong. The answer
+is E - we can not determine what the output will be prior to execution.
+</p>
+<p>Why can't we determine the output? Well, the culprit is our
+synchronization - it's faulty. Let's start by looking at the
+constructor of class Q010.
+</p>
+<table width="100%">
+<tbody><tr>
+<td class="code">
+<pre>
+public Q010(String n)
+{
+    name = n;
+    Q010a.getLock(semaphore);
+}
+
+...
+
+private static String s = new String("g");
+
+...
+
+static void getLock(Object o)
+{
+    o = s;
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+<p>This whole problem really boils down to one thing - objects are
+passed by passing a copy of a reference to that object. That means
+that, when we pass an object to a method, we don't actually pass the
+object, we pass a reference to that object. In this case, we're passing
+the reference variable semaphore to the method getLock(Object). What
+does that give us? Well, that gives us two references to the same
+object. The reference variable semaphore, in class Q010, and the formal
+parameter o, in Q010a.getLock(Object), both reference the same object.
+In this case, that object is an empty String - it was initialized as a
+instance member initializer.
+</p>
+<p>So what does the getLock(Object) method do? Well, in short, just
+about nothing. It assigns a reference to Q010a.s, which is a String
+object containing the String "g", to the reference variable o. But,
+keep in mind that o is just a reference to an object, not the object
+itself. By assigning a new reference value to o, we have not changed
+the original object or the original reference variable, semaphore. The
+variable semaphore still happily references the empty String object it
+always referenced.
+</p>
+<p>Because I love pictures so much (especially when dealing with
+references, here's a before and after picture with regards to that line
+in Q010a.getLock(Object):
+</p>
+<table width="100%">
+<tbody><tr>
+<td class="code">
+<b>Before:</b>
+<pre>               +-----+
+semaphore ---&gt; | ""  | &lt;--- o
+               +-----+
+
+               +-----+
+Q010a.s -----&gt; | "g" |
+               +-----+
+</pre>
+<b>After:</b>
+<pre>               +-----+
+semaphore ---&gt; | ""  |
+               +-----+
+
+               +-----+
+Q010a.s -----&gt; | "g" | &lt;--- o
+               +-----+
+</pre>
+</td>
+</tr>
+</tbody></table>
+<p>Therefore, we end up with two Runnable objects that each are
+synchronizing on their own, separate, locks. Because each Runnable
+object is using its own object to synchronize on, each thread will <i>always</i>
+have an available lock and the two threads will not synchronize with
+one another. Therefore, we have no idea what the output of this program
+will be. In fact, here's the output I got:
+</p>
+<table width="100%">
+<tbody><tr>
+<td class="code">
+<pre>
+Message from q1.
+Message from q1.
+Message from q1.
+Message from q1.
+Message from q1.
+Message from q1.
+Message from q1.
+Message from q1.
+Message from q2.
+Message from q2.
+Message from q2.
+Message from q2.
+Message from q2.
+Message from q2.
+Message from q2.
+Message from q2.
+Message from q2.
+Message from q2.
+Message from q1.
+Message from q1.
+</pre>
+</td>
+</tr>
+</tbody></table>
+<p>I hope you got that question right and, even if you didn't, I hope
+you understand the answer now. The type of trickery I used here isn't
+uncommon for the SCJP exam. The author of the question wants to lead
+you one way, just as I wanted to make you think this question was about
+threads and synchronization, and then throw a curveball that's
+unrelated, such as how objects are passed to methods. That's one of the
+reasons it's important to read every question carefully. In all my time
+studying for the SCJP, the most difficult thing for me to do was to
+take my time to ensure that I didn't miss a little detail.
+</p>
+<p>Hopefully, you learned something today, even if it was just to read
+SCJP questions very carefully. Have a good weekend, everyone.
+</p>
+<p>
+Corey
+</p>
+        
+      
+      
+      
+    
+  </div>
+
+  <div class="blogEntryMetadata">
+    <span class="floatRight">
+      
+        <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#trackbacks">TrackBacks[0]</a>
+      
+      
+        <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comments">Comments[15]</a>
+      
+    </span>
+    
+    Posted by corey on 30 April 2004 10:29:53 CDT
+  </div>
+
+  
+    <br>
+    <a name="comments"></a>
+    
+
+
+
+
+  
+    
+      
+      
+        
+        
+          <div class="itemBodyOdd" style="padding: 16px;">
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083348720000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083348720000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083348720000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083348720000" name="comment1083348720000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083348720000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+So the point of this is that the SCJP certification is totally
+meaningless? No code should ever EVER be written like this, so
+understanding the intricacies of why this is wrong is just a pointless
+exercise in language syntax. </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Anonymous on 30 April 2004 13:12:00 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+          <div class="itemBodyEven" style="padding: 16px;">
+        
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083349046000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083349046000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083349046000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083349046000" name="comment1083349046000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083349046000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+    The SCJP certification is <i>not</i>
+meaningless, but it does, to some degree, test your ability to
+understand language syntax. In fact, I'd say that being able to
+understand language syntax is a big part of the exam.<br>
+<br>
+If you can understand code like this, you can understand anything you'd see in the businessplace.<br>
+<br>
+One thing that has always frustrated me with regards to the SCJP
+certification is the fact that the questions and samples are nothing
+that you'd see in the "real world." However, in order to test specific
+aspects, sometimes it is just a lot easier to contrive examples to do
+so rather than to create a "meaningful" problem. </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Corey on 30 April 2004 13:17:26 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+        
+          <div class="itemBodyOdd" style="padding: 16px;">
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083354900000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083354900000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083354900000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083354900000" name="comment1083354900000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083354900000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+    <p>The
+thing that I found surprising the first time I looked at some sample
+SCJP exam questions was that each question tends to test you on
+multiple bits of obscure knowledge <i>simultaneously</i>, just as this
+one does. This question is not about how synchronization works, nor
+about how parameters are passed, nor about the difference between
+static and instance members, nor about the string pool, nor the
+uniqueness of instances created by "new". It's about every single one
+of these unrelated bits of trivia <i>all at once.</i> Doing well on
+the exam requires you to recognize this fact. Born test-takers may
+actually do very badly if they don't understand that these questions
+are never "orthogonal" in the way that college exam questions are.</p>
+<p>It's not enough to find the one "gotcha." There may be 10 "gotcha"s
+in a single question, so you have to read and think about every single
+line of code. I think Corey's right in that it actually <i>does</i>
+prepare you for the real world in the sense that it's good practice for
+the day when a pile of crappy, nonfunctional code is dumped on your
+desk with the admonition to "fix it."</p>
+  </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Ernest Friedman-Hill on 30 April 2004 14:55:00 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+          <div class="itemBodyEven" style="padding: 16px;">
+        
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083359398000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083359398000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083359398000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083359398000" name="comment1083359398000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083359398000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+I feel obligated to clear one thing up here: Nothing in java is pass by
+reference. All arguments are pass by value. "Object o" does not declare
+"o" to be of type "Object", it declares "o" to store a reference to an
+instance of type "Object", and then calling "getLock(semaphore)" copies
+the value stored in the variable "semaphore", which in this case is a
+refernce to a "String" instance, into the local variable "o" when the
+method is invoked. </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from brian on 30 April 2004 16:09:58 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+        
+          <div class="itemBodyOdd" style="padding: 16px;">
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083368975000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083368975000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083368975000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083368975000" name="comment1083368975000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083368975000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+    I'm assuming you failed the SCJP exam brian if you believe that "All arguments are pass by value."
+  </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from <a href="http://www.redhillconsulting.com.au/blogs/simon" target="_blank" title="http://www.redhillconsulting.com.au/blogs/simon" rel="nofollow">Simon Harris</a> on 30 April 2004 18:49:35 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+          <div class="itemBodyEven" style="padding: 16px;">
+        
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083375470000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083375470000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083375470000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083375470000" name="comment1083375470000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083375470000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+Well then you're assuming incorrectly. I've never taken the SCJP exam
+and never plan on taking it. From my experience, it's a poor indicator
+of programming ability.
+But I do know that Java is pass by value. You can search google and
+find numerous results regarding this but here are a few:
+<a href="http://www.javaworld.com/javaworld/javaqa/2000-05/03-qa-0526-pass.html" rel="nofollow">Javaworld</a>, <a href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#37472" rel="nofollow">The Java Spec</a>, and finally, a <a href="http://www.krasu.ru/server/docs/java/scjp/07.htm#pas_" rel="nofollow">review for the SCJP</a>.
+  </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from brian on 30 April 2004 20:37:50 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+        
+          <div class="itemBodyOdd" style="padding: 16px;">
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083376240000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083376240000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083376240000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083376240000" name="comment1083376240000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083376240000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+    Actually, Brian is correct. I got a little too lax with my terminology and made a mistake. This line:<br>
+<br>
+"This whole problem really boils down to one thing - objects are passed by reference."<br>
+<br>Is incorrect. We are passing a reference to an object, but we are
+doing so by passing a copy of that reference, which is really
+considered "pass by value." I have updated that line to read as follows:<br>
+<br>
+"This whole problem really boils down to one thing - objects are passed by passing a copy of a reference to that object."<br>
+<br>
+I believe the rest of my statements are correct. I'm sorry for the
+confusion - I'll have to do a better job of proof-reading in the
+future. </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Corey on 30 April 2004 20:50:40 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+          <div class="itemBodyEven" style="padding: 16px;">
+        
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083376544000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083376544000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083376544000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083376544000" name="comment1083376544000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083376544000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+I agree with you, Brian. I believe that the SCJP exam, by itself, is a
+poor indicator of programming ability. That said, I believe I leaned a
+lot during my studies for the SCJP exam. Although I find it a poor
+basis for learning the language, I find it an excellent program for
+"filling in the holes" of knowledge of an experienced programmer. </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Corey on 30 April 2004 20:55:44 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+        
+          <div class="itemBodyOdd" style="padding: 16px;">
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083540373000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083540373000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083540373000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083540373000" name="comment1083540373000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083540373000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+I think we're agreeing but we have different ideas of what
+pass-by-reference actually means.
+I can modify the reference passed to a method and it won't affect the
+callers reference. But if I modify the object being referred to, the
+callers will be similarly modified because it's the same thing.
+The entire object is not copied on to the stack however the entire
+reference IS.
+Therefore, as I said, objects ARE passed by reference. References are,
+however, passed by value.
+Anyway I think we actually "mean" the same thing :-)
+BTW, I agree with the exam being a waste of time however :-). </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Anonymous on 02 May 2004 18:26:13 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+          <div class="itemBodyEven" style="padding: 16px;">
+        
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083565978000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083565978000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083565978000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083565978000" name="comment1083565978000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083565978000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+    References to Objects are passed by value which has the immediate (and intended) effect of passing the Objects by reference,
+
+I must admit I was somewhat confused with the answer here on first reading it, doubting between D and E. 
+Corey's explanation of why it is E is indeed enlightening.
+  </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Jeroen Wenting on 03 May 2004 01:32:58 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+        
+          <div class="itemBodyOdd" style="padding: 16px;">
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1083594099000#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083594099000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083594099000">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083594099000" name="comment1083594099000" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1083594099000">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+I think everyone here understands how objects are passed around in Java
+- I think there's just some confusion about what constitutes pass by
+value and pass by value.<br>
+<br>
+Pass by Value means that we make a copy of the variable we are passing.
+Pass by Reference means we do not. Obviously, this is confusing because
+we <i>do</i> make a copy of the reference variable, but we <i>do not</i> make a copy of the object it refers to. So which is it? Pass by reference or pass by value?<br>
+<br>
+Well, in the most technical terms, we are passing a variable, which is
+a reference variable, to a method by copying the value of that variable
+to the activation stack. That, essentially, is pass by value. Of
+course, the variable we are passing is a reference, but it doesn't
+change the fact that we just made a copy of that variable. Because we
+make that copy, I'd say that Java is a "pass by value" language.<br>
+<br>
+There's a neat article you can check out <a href="http://www.javaranch.com/campfire/StoryPassBy.jsp" rel="nofollow">here</a> that goes into some greater detail, as well.
+  </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Corey on 03 May 2004 09:21:39 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+          <div class="itemBodyEven" style="padding: 16px;">
+        
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1131999391939#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1131999391939" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1131999391939">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1131999391939" name="comment1131999391939" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1131999391939">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+    Nice quiz for the lingering C++ programmer in all of us :P
+  </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from CL Gilbert on 14 November 2005 14:16:31 CST
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+        
+          <div class="itemBodyOdd" style="padding: 16px;">
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1147322493477#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1147322493477" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1147322493477">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1147322493477" name="comment1147322493477" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1147322493477">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+Corey, it would be great if you include an article on passing on arrays
+to a method as well, because as far as I know even arrays are treated
+as java objects. One way that I look at such questions is that assume
+the array is an object (object reference actually), while its
+individual elements are the properties (data members) of the array
+'object'. Is this assumption fine? </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Harsh on 10 May 2006 23:41:33 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+          <div class="itemBodyEven" style="padding: 16px;">
+        
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1147355508238#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1147355508238" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1147355508238">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1147355508238" name="comment1147355508238" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1147355508238">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+Yes, arrays are objects, as well. As such, they behave like any other
+object with members. Those members could be primitives or they could be
+other object references. Either is acceptable. But, when you pass an
+array to a method, remember that you're passing a copy of a reference
+to that array - it is an object. </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Corey on 11 May 2006 08:51:48 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+      
+      
+        
+        
+          <div class="itemBodyOdd" style="padding: 16px;">
+        
+      
+          
+
+
+
+
+
+  
+  
+  
+<div class="comment approved">
+  
+
+
+  <div class="commentHeader">
+    <span class="commentLinks">
+      
+      <a href="http://radio.javaranch.com/corey/replyToComment.action?entry=1083338993000&amp;comment=1161108105216#form">Reply</a> |
+      <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1161108105216" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1161108105216">Permalink</a>
+    </span>
+    <a href="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1161108105216" name="comment1161108105216" title="http://radio.javaranch.com/corey/2004/04/30/1083338993000.html#comment1161108105216">Re: Thread Synchronization</a>
+  </div>
+
+  <div class="commentBody">
+Its always confusing. Corey can you please explain pass-by-value and
+pass-by-reference, in details with examples. i am always poor in that
+no matter how many books i read. DAMN this "pass-by-'s". Thanking you
+in advance.. </div>
+
+  <div class="commentMetadata">
+    
+    
+
+    Comment from Arun Kumar on 17 October 2006 13:01:45 CDT
+  </div>
+
+</div>
+
+          </div>
+    
+  
+  
+
+
+    <a name="trackbacks"></a>
+    
+
+
+
+
+
+  
+  
+
+
+    
+
+    
+      <div class="small" style="text-align: center;">TrackBack to http://radio.javaranch.com/corey/addTrackBack.action?entry=1083338993000</div>
+      <br>
+      
+    
+  
+
+</div>
+
+</div>
+
+<div class="footer">
+  <span class="footerLinks">
+    Powered by <a href="http://pebble.sourceforge.net/"><b>Pebble 1.9.1</b></a>
+    [
+      
+        <a href="http://radio.javaranch.com/corey/login.secureaction">Login</a>
+      
+      
+    ]
+  </span>
+  <span>
+    Content © Corey McGlone
+  </span>
+</div>
+
+    </div>
+  </body></html>

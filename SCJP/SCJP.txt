@@ -1,0 +1,2022 @@
+Questions no -1 
+What is the output for the below code ?
+
+class A implements Runnable{
+	public void run(){
+		System.out.println(Thread.currentThread().getName());
+	}   
+}
+
+
+public class Test {		
+	public static void main(String... args) {	
+		A a = new A();
+		Thread t = new Thread(a);
+		Thread t1 = new Thread(a);		
+		t.setName("t");
+		t1.setName("t1");
+		t.setPriority(10);
+		t1.setPriority(-3);
+		t.start();
+		t1.start();
+		
+	}
+}
+
+
+
+
+Options are
+
+A.t t1
+B.t1 t
+C.t t
+D.Compilation succeed but Runtime Exception
+
+Answer :
+D is the correct answer.
+
+Thread priorities are set using a positive integer, usually between 1 and 10. t1.setPriority(-3); throws java.lang.IllegalArgumentException.
+
+
+Questions no -2 
+What is the output for the below code ?
+
+class A implements Runnable{
+	public void run(){
+		System.out.println(Thread.currentThread().getName());
+	}   
+}
+
+1. public class Test {		
+2.	public static void main(String... args) {	
+3.		A a = new A();
+4.		Thread t = new Thread(a);
+5.		t.setName("good");
+6.		t.start();
+7.	}
+8. }
+
+
+
+
+
+Options are
+
+A.good
+B.null
+C.Compilation fails with an error at line 5
+D.Compilation succeed but Runtime Exception
+
+Answer :
+A is the correct answer.
+
+Thread.currentThread().getName() return name of the current thread.
+
+
+Questions no -3 
+What is the output for the below code ?
+
+public class Test {
+	
+
+	public static void main(String[] args) {
+		Boolean expr = true;
+		if (expr) {
+			System.out.println("true");
+		} else {
+			System.out.println("false");
+		}
+		
+	}
+
+
+}
+
+
+
+
+options
+A)true
+B)Compile Error - can't use Boolean object in if().
+C)false
+D)Compile Properly but Runtime Exception.
+
+Correct answer is : A
+
+Explanations : In the if statement, condition can be Boolean object in jdk1.5 and jdk1.6.
+In the previous version only boolean is allowed.
+
+Questions no -4 
+What is the output for the below code ?
+
+public class Test {
+	
+
+	public static void main(String[] args) {
+		List<Integer> list = new ArrayList<Integer>(); 
+		list.add(0, 59);
+		int total = list.get(0);
+		System.out.println(total);
+
+		
+	}
+
+
+}
+
+
+
+
+options
+A)59
+B)Compile time error, because you have to do int total = ((Integer)(list.get(0))).intValue();
+C)Compile time error, because can't add primitive type in List.
+D)Compile Properly but Runtime Exception.
+
+Correct answer is : A
+
+Explanations :Manual conversion between primitive types (such as an int) and wrapper classes 
+
+(such as Integer) is necessary when adding a primitive data type to a collection in jdk1.4 but
+
+The new autoboxing/unboxing feature eliminates this manual conversion in jdk 1.5 and jdk 1.6.
+
+Questions no -3 
+What is the output for the below code ?
+
+public class Test {
+	
+
+	public static void main(String[] args) {
+		Integer i = null;
+		int j = i;
+		System.out.println(j);
+		
+	}
+
+
+}
+
+
+
+options
+A)0
+B)Compile with error 
+C)null
+D)NullPointerException
+
+Correct answer is : D
+
+Explanations :An Integer expression can have a null value. If your program tries to autounbox null,
+ it will throw a NullPointerException.
+
+Questions no -4 
+What is the output for the below code ?
+
+public class Outer {
+	private int a = 7;
+	   
+	   class Inner {
+	      public void displayValue() {
+	         System.out.println("Value of a is " + a);
+	      }
+	   }
+	}
+
+
+public class Test {
+	
+	public static void main(String... args) throws Exception {
+		Outer mo = new Outer();     
+		  Outer.Inner inner = mo.new Inner();
+		  inner.displayValue();
+
+	}
+	
+}
+
+
+
+
+options
+A)Value of a is 7
+B)Compile Error - not able to access private member.
+C)Runtime Exception
+D)Value of a is 8
+
+Correct answer is : A
+
+Explanations : An inner class instance can never stand alone without a direct relationship to an instance of the outer class.
+
+you can access the inner class is through a live instance of the outer class.
+
+Inner class can access private member of the outer class.
+
+Questions no -5 
+What is the output for the below code ?
+
+public class B {
+	
+	public String getCountryName(){
+		return "USA";
+	}
+	
+	public StringBuffer getCountryName(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("UK");
+		return sb;
+	}
+	
+	
+	public static void main(String[] args){
+		B b = new B();
+		System.out.println(b.getCountryName().toString());
+	}
+
+}
+
+
+
+options
+A)Compile with error
+B)USA
+C)UK
+D) Runtime Exception
+
+Correct answer is : A
+
+Explanations : You cannot have two methods in the same class with signatures that only differ by return type.
+
+Questions no -6
+What is the output for the below code ?
+
+public class C {
+
+}
+
+public class D extends C{
+
+}
+
+public class A {
+	
+	public C getOBJ(){
+		System.out.println("class A - return C");
+		return new C();
+		
+	}
+
+}
+
+public class B extends A{
+	
+	public D getOBJ(){
+		System.out.println("class B - return D");
+		return new D();
+		
+	}
+
+}
+
+public class Test {
+
+public static void main(String... args) {
+     A a = new B();
+     a.getOBJ();
+	
+     }
+}
+
+
+
+options
+A)Compile with error - Not allowed to override the return type of a method with a subtype of the original type.
+B)class A - return C
+C)class B - return D
+D) Runtime Exception
+
+Correct answer is : C
+
+Explanations : From J2SE 5.0 onwards. You are now allowed to override the return type of a method with a subtype of the original type.
+
+Questions no -7
+What is the output for the below code ?
+
+public class A {
+	
+	public String getName() throws ArrayIndexOutOfBoundsException{
+		return "Name-A";
+	}
+	
+}
+	
+public class C extends A{
+	
+	public String getName() throws Exception{
+		return "Name-C";
+	}
+
+}
+	
+	
+public class Test {
+	public static void main(String... args) {
+		A a = new C();
+		a.getName();
+	}
+	
+}
+
+
+
+options
+A)Compile with error
+B)Name-A
+C)Name-C
+D)Runtime Exception
+
+Correct answer is : A
+
+Explanations : Exception Exception is not compatible with throws clause in A.getName().
+
+Overridden method should throw only same or sub class of the exception thrown by super class method.
+
+Questions no -8 
+What is the output for the below code ?
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Test {
+	
+	public static void main(String... args) {
+            
+		Pattern p = Pattern.compile("a*b");
+		Matcher m = p.matcher("b");
+		boolean b = m.matches();
+		System.out.println(b);
+
+		
+
+	}
+}
+
+
+
+
+options
+A)true
+B)Compile Error
+C)false
+D)b
+
+Correct answer is : A
+
+Explanations : a*b means "a" may present zero or more time and "b" should be present once.
+
+Questions no -9 
+What is the output for the below code ?
+
+public class Test {
+	
+	public static void main(String... args) {
+            
+		
+		String input = "1 fish 2 fish red fish blue fish";
+		Scanner s = new Scanner(input).useDelimiter("\\s*fish\\s*");
+		System.out.println(s.nextInt());
+		System.out.println(s.nextInt());
+		System.out.println(s.next());
+		System.out.println(s.next());
+		s.close(); 
+		
+
+	}
+}
+
+
+
+
+options
+A)1 2 red blue
+B)Compile Error - because Scanner is not defind in java.
+C)1 fish 2 fish red fish blue fish
+D)1 fish 2 fish red blue fish
+
+Correct answer is : A
+
+Explanations : java.util.Scanner is a simple text scanner which can parse primitive types and strings using regular expressions.
+
+Questions no -10 
+What is the output for the below code ?
+
+public class Test {
+	
+	public static void main(String... args) {
+            
+		Pattern p = Pattern.compile("a{3}b?c*");
+		Matcher m = p.matcher("aaab");
+		boolean b = m.matches();
+		System.out.println(b);
+
+		
+
+	}
+}
+
+
+
+
+options
+A)true
+B)Compile Error 
+C)false
+D)NullPointerException
+
+Correct answer is : A
+
+Explanations :
+X?  X, once or not at all 
+X*  X, zero or more times 
+X+  X, one or more times 
+X{n}  X, exactly n times 
+X{n,}  X, at least n times 
+X{n,m}  X, at least n but not more than m times
+
+Questions no -11 
+What is the output for the below code ?
+
+public class Test {
+	
+	public static void main(String... args) {
+            
+		Pattern p = Pattern.compile("a{1,3}b?c*");
+		Matcher m = p.matcher("aaab");
+		boolean b = m.matches();
+		System.out.println(b);
+
+		
+
+	}
+}
+
+
+
+
+options
+A)true
+B)Compile Error 
+C)false
+D)NullPointerException
+
+Correct answer is : A
+
+Explanations :
+X?  X, once or not at all 
+X*  X, zero or more times 
+X+  X, one or more times 
+X{n}  X, exactly n times 
+X{n,}  X, at least n times 
+X{n,m}  X, at least n but not more than m times
+
+Questions no -12 
+What is the output for the below code ?
+
+public class A {
+	public A() {
+        System.out.println("A");
+    }
+}
+
+public class B extends A implements Serializable {
+	public B() {
+        System.out.println("B");
+    }
+
+}
+
+public class Test {
+	
+	public static void main(String... args) throws Exception {
+		B b = new B();
+       
+        ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("datafile"));
+        save.writeObject(b); 
+        save.flush(); 
+        
+
+        ObjectInputStream restore = new ObjectInputStream(new FileInputStream("datafile"));
+        B z = (B) restore.readObject();
+
+        
+
+	}
+	
+}
+
+
+
+
+options
+A)A B A
+B)A B A B
+C)B B
+D)A B
+
+Correct answer is : A
+
+Explanations :On the time of deserialization , the Serializable object not create new object. So constructor of class B does not called.
+ 
+A is not Serializable object so constructor is called.
+
+Questions no -13 
+What is the output for the below code ?
+
+public class A {}
+
+public class B implements Serializable  {
+	A a = new A();
+	public static void main(String... args){
+		B b = new B();
+		try{
+			FileOutputStream fs = new FileOutputStream("b.ser");
+			ObjectOutputStream os = new ObjectOutputStream(fs);
+			os.writeObject(b);
+			os.close();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+
+}
+
+
+
+
+options
+A)Compilation Fail
+B)java.io.NotSerializableException:  Because class A is not Serializable.
+C)Run properly
+D)Compilation Fail :  Because class A is not Serializable.
+
+Correct answer is : B
+
+Explanations :It throws java.io.NotSerializableException:A  Because class A is not Serializable.
+
+When JVM tries to serialize object B it will try to serialize A also because (A a = new A()) is instance variable of Class B.
+
+So thows NotSerializableException.
+
+
+Questions no -14 
+What is the output for the below code running in the same JVM?
+
+public class A implements Serializable {
+	transient int a = 7;
+	  static int b = 9;
+
+}
+
+public class B implements Serializable  {
+	
+	public static void main(String... args){
+		A a = new A();
+		try {
+		      ObjectOutputStream os = new ObjectOutputStream(
+		         new FileOutputStream("test.ser"));
+		      os.writeObject(a);  
+		      os. close();
+		      System.out.print( + + a.b + " ");
+
+		      ObjectInputStream is = new ObjectInputStream(new FileInputStream("test.ser"));
+		      A s2 = (A)is.readObject();
+		      is.close();
+		      System.out.println(s2.a + " " + s2.b);
+		    } catch (Exception x) 
+		    {
+		    	x.printStackTrace();
+		    }
+
+	}
+
+}
+
+
+
+
+options
+A)9 0 9
+B)9 7 9
+C)0 0 0
+D)0 7 0
+
+Correct answer is : A
+
+Explanations :transient variables are not serialized when an object is serialized.
+
+In the case of static variable you can get the values in the same JVM. 
+
+
+Questions no -15 
+What is the output for the below code ?
+
+public enum Test {
+	BREAKFAST(7, 30), LUNCH(12, 15), DINNER(19, 45);
+	
+	private int hh;
+
+	private int mm;
+
+	Test(int hh, int mm) {
+		assert (hh >= 0 && hh <= 23) : "Illegal hour.";
+		assert (mm >= 0 && mm <= 59) : "Illegal mins.";
+		this.hh = hh;
+		this.mm = mm;
+	}
+
+	public int getHour() {
+		return hh;
+	}
+
+	public int getMins() {
+		return mm;
+	}
+	
+	public static void main(String args[]){
+		Test t =  new BREAKFAST;
+		System.out.println(t.getHour() +":"+t.getMins());
+	}
+}
+
+
+
+
+options
+A)7:30
+B)Compile Error - an enum cannot be instantiated using the new operator.
+C)12:50
+D)19:45
+
+Correct answer is : B
+
+Explanations : As an enum cannot be instantiated using the new operator, the constructors cannot be called explicitly.
+You have to do like 
+Test t =  BREAKFAST;
+
+Questions no -16 
+What is the output for the below code ?
+
+public class Test {
+	enum Day {
+		MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+	}
+	enum Month {
+		JAN, FEB
+	}
+
+	public static void main(String[] args) {
+
+		int[] freqArray = { 12, 34, 56, 23, 5, 13, 78 };
+
+		// Create a Map of frequencies
+		Map<Day, Integer> ordinaryMap = new HashMap<Day, Integer>();
+		for (Day day : Day.values()) {
+			ordinaryMap.put(day, freqArray[day.ordinal()]);
+		}
+		
+
+		// Create an EnumMap of frequencies
+		EnumMap<Day, Integer> frequencyEnumMap = new EnumMap<Day, Integer>(ordinaryMap);
+
+		// Change some frequencies
+		frequencyEnumMap.put(null, 100);
+		
+		System.out.println("Frequency EnumMap: " + frequencyEnumMap);
+
+		
+	}
+
+}
+
+
+options
+A)Frequency EnumMap: {MONDAY=12, TUESDAY=34, WEDNESDAY=56, THURSDAY=23, FRIDAY=5, SATURDAY=13, SUNDAY=78}
+B)Compile Error 
+C)NullPointerException
+D)Frequency EnumMap: {MONDAY=100, TUESDAY=34, WEDNESDAY=56, THURSDAY=23, FRIDAY=5, SATURDAY=13, SUNDAY=123}
+
+Correct answer is : C
+
+Explanations : The null reference as a key is NOT permitted.
+
+Questions no -17 
+public class EnumTypeDeclarations {
+	
+	public void foo() {
+		
+		enum SimpleMeal { 
+			BREAKFAST, LUNCH, DINNER 
+		}
+	}
+}
+
+Is the above code Compile without error ?
+
+
+options
+A)Compile without error
+B)Compile with error
+C)Compile without error but Runtime Exception
+D)Compile without error but Enum Exception
+
+Correct answer is : B
+
+Explanations :
+An enum declaration is a special kind of class declaration:
+
+a) It can be declared at the top-level and as static enum declaration. 
+
+b) It is implicitly static, i.e. no outer object is associated with an enum constant. 
+
+c) It is implicitly final unless it contains constant-specific class bodies, but it can implement interfaces. 
+
+d) It cannot be declared abstract unless each abstract method is overridden in the constant-specific class body of every enum constant. 
+
+e) Local (inner) enum declaration is NOT OK! 
+
+Here in
+public void foo() {
+		
+		enum SimpleMeal { 
+			BREAKFAST, LUNCH, DINNER 
+		}
+	}
+
+enum declaration is local within method so compile time error.
+
+Questions no -18 
+What is the output for the below code ?
+
+public enum Test {
+	int t;
+	BREAKFAST(7, 30), LUNCH(12, 15), DINNER(19, 45);
+	
+	private int hh;
+
+	private int mm;
+
+	Test(int hh, int mm) {
+		assert (hh >= 0 && hh <= 23) : "Illegal hour.";
+		assert (mm >= 0 && mm <= 59) : "Illegal mins.";
+		this.hh = hh;
+		this.mm = mm;
+	}
+
+	public int getHour() {
+		return hh;
+	}
+
+	public int getMins() {
+		return mm;
+	}
+	
+	public static void main(String args[]){
+		Test t =  BREAKFAST;
+		System.out.println(t.getHour() +":"+t.getMins());
+	}
+}
+
+
+
+
+options
+A)7:30
+B)Compile Error 
+C)12:15
+D)19:45
+
+Correct answer is : B
+
+Explanations : The enum constants must be declared before any other declarations in an enum type.
+
+In this case compile error because of declaration int t; before enum declaration.
+
+
+Questions no -19 
+What is the output for the below code ?
+
+public class B extends Thread{
+public static void main(String argv[]){
+B b = new B();
+b.run();
+} 
+public void start(){
+for (int i = 0; i < 10; i++){
+System.out.println("Value of i = " + i); 
+}  
+}
+}
+
+
+
+
+options
+A)A compile time error indicating that no run method is defined for the Thread class
+B)A run time error indicating that no run method is defined for the Thread class
+C)Clean compile and at run time the values 0 to 9 are printed out
+D)Clean compile but no output at runtime
+
+Correct answer is : D
+
+Explanations : This is a bit of a sneaky one as I have swapped around the names of the methods you need to define and call when running a thread.
+ If the for loop were defined in a method called public void run() and the call in the main method had been to b.start() The list of values from 0 to 9 
+would have been output.
+
+Questions no -20 
+
+What is the output for the below code ?
+
+public class Test extends Thread{
+
+    static String sName = "good";
+    public static void main(String argv[]){
+    	Test t = new Test();
+    t.nameTest(sName);
+    System.out.println(sName);
+    
+    }
+    public void nameTest(String sName){
+            sName = sName + " idea ";
+             start();
+    }
+    public void run(){
+    
+    for(int i=0;i  <  4; i++){
+            sName = sName + " " + i;
+            
+    }
+    }
+
+}
+
+
+
+
+options
+A)good
+B)good idea
+C)good idea good idea
+D)good 0 good 0 1
+
+Correct answer is : A
+
+Explanations : Change value in local methods wouldn’t change in global in case of String ( because String object is immutable).
+
+Questions no -21 
+What is the output for the below code ?
+
+public class Test{
+	public static void main(String argv[]){
+	Test1 pm1 = new Test1("One");
+	pm1.run();
+	Test1 pm2 = new Test1("Two");
+	pm2.run();
+
+	}
+}
+
+class Test1 extends Thread{
+private String sTname="";
+Test1(String s){
+	sTname = s;
+
+}
+public void run(){
+	for(int i =0; i < 2 ; i++){
+		try{
+		 sleep(1000);
+		}catch(InterruptedException e){}
+
+		yield();
+		System.out.println(sTname);
+		}
+
+	}
+}
+
+
+
+
+options
+A)Compile error
+B)One One Two Two
+C)One Two One Two
+D)One Two
+
+Correct answer is : B
+
+Explanations : If you call the run method directly it just acts as any other method and does not return to the calling code until it has finished. executing
+
+Questions no -22 
+What is the output for the below code ?
+
+public class Test extends Thread{
+    public static void main(String argv[]){
+        Test  b = new Test();
+        b.start();
+    }
+    public void run(){      
+        System.out.println("Running");
+    }
+}
+
+
+
+
+options
+A)Compilation clean and run but no output
+B)Compilation and run with the output "Running"
+C)Compile time error with complaint of no Thread import
+D)Compile time error with complaint of no access to Thread package
+
+Correct answer is : B
+
+Explanations :
+The Thread class is part of the core java.lang package and does not need any explicit import statement.
+
+Questions no -23 
+What is the output for the below code ?
+
+public class Tech {
+	 public void tech() {
+	      System.out.println("Tech");
+	   }
+
+}
+
+
+public class Atech {
+
+	Tech a = new Tech() {	      
+	      public void tech() {
+	         System.out.println("anonymous tech");
+	      }
+	   };
+	   
+	   public void dothis() {
+		      a.tech();     
+		      
+		   }
+
+public static void main(String... args){
+	Atech atech = new Atech();
+	atech.dothis();
+}
+
+
+
+
+options
+A)anonymous tech
+B)Compile Error 
+C)Tech
+D)anonymous tech Tech
+
+Correct answer is : A
+
+Explanations : This is anonymous subclass of the specified class type.
+
+Anonymous inner class ( anonymous subclass ) overriden the Tech super class of tech() method.
+
+Therefore Subclass method will get called.
+
+Questions no -24 
+What is the output for the below code ?
+
+public class Outer {
+	 private String x = "Outer variable";
+	   void doStuff() {
+	     String z = "local variable";
+	     class Inner {
+	       public void seeOuter() {
+	         System.out.println("Outer x is " + x);
+	         System.out.println("Local variable z is " + z);  
+	       } 
+	     }   
+	   }  
+	   
+	  
+}
+
+
+
+
+options
+A)Outer x is Outer variable.
+B)Compile Error 
+C)Local variable z is local variable.
+D)Outer x is Outer variable Local variable z is local variable
+
+Correct answer is : B
+
+Explanations : Cannot refer to a non-final variable z inside an inner class defined in a different method.
+
+Questions no -25
+
+What is the output for the below code ?
+
+public class Test {
+	
+	public static void main(String... args) {
+		for(int i = 2; i < 4; i++)
+  for(int j = 2; j < 4; j++)
+     assert i!=j : i; 
+
+
+	}
+}
+
+options
+A)The class compiles and runs, but does not print anything.
+B)The number 2 gets printed with AssertionError
+C)The number 3 gets printed with AssertionError
+D)compile error
+
+Correct answer is : B
+
+Explanations : When i and j are both 2, assert condition is false, and AssertionError gets generated. 
+
+Questions no -26
+
+What is the output for the below code ?
+
+public class Test {
+	
+	public static void main(String... args) {
+		for(int i = 2; i < 4; i++)
+  for(int j = 2; j < 4; j++)
+	if(i < j)
+     assert i!=j : i; 
+
+
+	}
+}
+
+options
+A)The class compiles and runs, but does not print anything.
+B)The number 2 gets printed with AssertionError
+C)The number 3 gets printed with AssertionError
+D)compile error
+
+Correct answer is : A
+
+Explanations : When if condition returns true, the assert statement also returns true.
+Hence AssertionError not generated.
+
+Questions no -26 
+What is the output for the below code ?
+
+public class NameBean {
+	private String str;
+	
+	NameBean(String str ){
+		this.str = str;
+	}
+	
+	public String toString() {
+		return str;
+	}
+}								
+								
+import java.util.HashSet;
+
+public class CollClient {
+	
+	public static void main(String ... sss) {
+		HashSet myMap = new HashSet();
+		String s1 = new String("das");
+		String s2 = new String("das");
+	NameBean s3 = new NameBean("abcdef");
+	NameBean s4 = new NameBean("abcdef");
+		
+		myMap.add(s1);
+		myMap.add(s2);
+		myMap.add(s3);
+		myMap.add(s4);
+		
+		System.out.println(myMap);
+	}	
+}
+
+
+
+
+options
+A)das abcdef abcdef
+B)das das abcdef abcdef
+C)das abcdef
+D)abcdef abcdef
+
+Correct answer is : A
+
+Explanations : Need to implement 'equals' and 'hashCode' methods to get unique Set for user defind objects(NameBean).
+
+String object internally implements 'equals' and 'hashCode' methods therefore Set only stored one value.
+
+Questions no -27 
+Synchronized resizable-array implementation of the List interface is _____________?
+
+
+
+
+options
+A)Vector
+B)ArrayList
+C)Hashtable
+D)HashMap
+
+Correct answer is : A
+
+Explanations : Vector implements List, RandomAccess - Synchronized resizable-array implementation of the List interface with additional "legacy methods."
+
+Questions no -28 
+What is the output for the below code ?
+public class Test {
+
+    
+    public static void main(String argv[]){
+    	 
+    	ArrayList list = new ArrayList(); 
+    	ArrayList<String> listStr = list; 
+    	ArrayList<StringBuffer> listBuf = list; 
+    	listStr.add(0, "Hello"); 
+    	StringBuffer buff = listBuf.get(0); 
+       System.out.println(buff.toString());
+    }
+
+}
+
+
+
+
+options
+A)Hello
+B)Compile error
+C)java.lang.ClassCastException
+D)null
+
+Correct answer is : C
+
+Explanations : java.lang.String cannot be cast to java.lang.StringBuffer at the code StringBuffer buff = listBuf.get(0); 
+So thows java.lang.ClassCastException.
+
+Questions no -29 
+What is the output for the below code ?
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+
+public class Test {
+	public static void main(String... args) {
+        
+		
+		
+		Queue<String> q = new LinkedList<String>();
+		        q.add("newyork");
+		        q.add("ca");
+		        q.add("texas");
+		        show(q);
+		    }
+		
+		    public static void show(Queue q) {
+		        q.add(new Integer(11));
+		        while (!q.isEmpty ( ) )
+		            System.out.print(q.poll() + "  ");
+		    }
+
+
+}
+
+
+
+
+options
+A)Compile error : Integer can't add
+B)newyork  ca  texas  11
+C)newyork  ca  texas
+D)newyork  ca 
+
+Correct answer is : B
+
+Explanations : q was originally declared as Queue<String>, But in show() method it is passed as an untyped Queue. nothing in the compiler or JVM prevents us from adding an Integer after that.
+# # If the show method signature is public static void show(Queue<String> q) than you can't add Integer, Only String allowed. But public static void show(Queue q) is untyped Queue so you can add Integer.
+# poll() Retrieves and removes the head of this queue, or returns null if this queue is empty.
+
+Questions no -30 
+What is the output for the below code ?
+
+public interface TestInf {
+ int i =10;
+}
+
+public class Test {
+	public static void main(String... args) {
+		TestInf.i=12;
+		System.out.println(TestInf.i);
+	
+	}
+	
+	
+	
+}
+
+
+
+options
+A)Compile with error
+B)10
+C)12
+D) Runtime Exception
+
+Correct answer is : A
+
+Explanations : All the variables declared in interface is Implicitly static and final , therefore can't change the value.
+
+Questions no -31 
+What is the output for the below code ?
+
+public class Test {
+            static { int a = 5; }
+            public static void main(String[] args){
+            System.out.println(a);
+            }
+          }
+
+
+
+options
+A)Compile with error
+B)5
+C)0
+D) Runtime Exception
+
+Correct answer is : A
+
+Explanations : A variable declared  in a static initialiser is not accessible outside its enclosing block.
+
+Questions no -32 
+What is the output for the below code ?
+
+class A {
+  { System.out.print("b1 "); }
+  public A() { System.out.print("b2 "); }
+}
+class B extends A {
+  static { System.out.print("r1 "); }
+  public B() { System.out.print("r2 "); }
+  { System.out.print("r3 "); }
+  static { System.out.print("r4 "); }
+}
+class C extends B {
+  public static void main(String[] args) {
+    System.out.print("pre ");
+    new C();
+    System.out.println("post ");
+  }
+}
+
+
+
+options
+A)r1 r4 pre b1 b2 r3 r2 post
+B)r1 r4 pre b1 b2  post
+C)r1 r4 pre b1 b2  post r3 r2
+D)pre r1 r4  b1 b2  r2 r3 post
+
+Correct answer is : A
+
+Explanations : All static blocks execute first then blocks and constructor. 
+
+Blocks and constructor executes (super class block then super class constructor, sub class block then sub class constructor).
+
+Sequence for static blocks is super class first then sub class.
+
+Sequence for blocks is super class first then sub class.
+
+
+Questions no -33 
+What is the output for the below code ?
+
+public class Test {
+	
+	public static void main(String... args) throws Exception {
+		Integer i = 34;
+		int l = 34;
+		if(i.equals(l)){
+			System.out.println(true);
+		}else{
+			System.out.println(false);
+		}
+
+	}
+	
+}
+
+
+
+options
+A)true
+B)false
+C)Compile Error
+D) Runtime Exception
+
+Correct answer is : A
+
+Explanations : equals() method for the integer wrappers will only return true if the two primitive types and the two values are equal.
+
+Questions no -34 
+Which statement is true about outer class?
+
+
+
+options
+A)outer class can only declare public , abstract and final
+B)outer class may be private
+C)outer class can't be abstract
+D)outer class can be static
+
+Correct answer is : A
+
+Explanations : outer class can only declare public , abstract and final.
+
+Questions no -35 
+
+What is the output for the below code ?
+
+static public class Test {
+	public static void main(String[] args) {
+		  char c = 'a';
+	
+		 switch(c){
+		     case 65:
+		              System.out.println("one");break;
+		     case 'a':
+		              System.out.println("two");break;
+		     case 3:
+		              System.out.println("three");
+		}
+		
+		}
+	
+
+}
+
+
+
+options
+A)one
+B)two
+C)Compile error - char can't be permitted in switch statement 
+D)Compile error - Illegal modifier for the class Test; only public, abstract & final are permitted.
+
+
+Correct answer is : D
+
+Explanations : outer class can only declare public , abstract and final.
+Illegal modifier for the class Test; only public, abstract & final are permitted
+
+Questions no -36
+
+What is the output for the below code ?
+
+public class Test {
+	
+	public static void main(String... args) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		
+		for(int i:list)
+			System.out.println(i);
+		
+
+	}
+}
+
+options
+A)1 2 3
+B)Compile error , can't add primitive type in ArrayList
+C)Compile error on for(int i:list) , Incorrect Syntax
+D)0 0 0
+
+Correct answer is : A
+
+Explanations : JDK 1.5, 1.6 allows add primitive type in ArrayList  and for(int i:list) syntax is also correct.
+for(int i:list) is same as 
+for(int i=0; i < list.size();i++){
+			int a = list.get(i);
+			
+		}
+
+Questions no -37 
+What is the output for the below code ?
+
+public class SuperClass {
+	public int doIt(String str, Integer... data)throws ArrayIndexOutOfBoundsException{
+		String signature = "(String, Integer[])";
+		System.out.println(str + "  " + signature);
+		return 1;
+	}
+
+}
+
+
+public class SubClass extends SuperClass{
+
+	public int doIt(String str, Integer... data) throws Exception
+	{
+		String signature = "(String, Integer[])";
+		System.out.println("Overridden: " + str + " " + signature);
+		return 0;
+	}
+	
+	public static void main(String... args)
+	{
+		SuperClass sb = new SubClass();
+		try{
+			sb.doIt("hello", 3);
+		}catch(Exception e){
+			
+		}
+		
+	}
+	
+}
+
+
+
+options
+A)Overridden: hello (String, Integer[])
+B)hello (String, Integer[])
+C)This code throws an Exception at Runtime
+D)Compile with error
+
+Correct answer is : D
+
+Explanations : Exception Exception is not compatible with throws clause in SuperClass.doIt(String, Integer[]). 
+The same exception or subclass of that exception is allowed.
+
+
+Questions no -38
+What is the result of executing the following code, using the parameters 0 and 3 ?
+
+public void divide(int a, int b) {
+	try {
+		int c = a / b;
+	} catch (Exception e) {
+		System.out.print("Exception ");
+	} finally {
+		System.out.println("Finally");
+}
+
+
+
+options
+A)Prints out: Exception Finally
+B)Prints out: Finally
+C)Prints out: Exception
+D)Compile with error
+
+Correct answer is : B
+
+Explanations : finally block always executed whether exception occurs or not. 
+	0/3 = 0 Does not throws exception.
+
+Questions no -39
+Which of the below statement is true about Error?
+
+
+
+options
+A)An Error is a subclass of Throwable
+B)An Error is a subclass of Exception
+C)Error indicates serious problems that a reasonable application should not try to catch.
+D)An Error is a subclass of IOException
+
+Correct answer is : A and C
+
+Explanations : An Error is a subclass of Throwable that indicates serious problems that a reasonable application should not try to catch.
+
+Questions no -40
+Which of the following is type of RuntimeException?
+
+
+
+
+
+options
+A)IOException
+B)ArrayIndexOutOfBoundsException
+C)Exception
+D)Error
+
+Correct answer is : B
+
+Explanations : Below is the tree.
+java.lang.Object
+  java.lang.Throwable
+      java.lang.Exception
+          java.lang.RuntimeException
+              java.lang.IndexOutOfBoundsException
+                  java.lang.ArrayIndexOutOfBoundsException
+
+Questions no -41 
+What is the output for the below code ?
+
+public class Test {
+	
+	public static void main(String... args) throws Exception {
+		 File file = new File("test.txt");  
+		 System.out.println(file.exists());
+		 FileWriter fw = new FileWriter(file); 
+		 System.out.println(file.exists());
+	}
+	
+}
+
+
+
+
+options
+A)true true
+B)false false
+C)false true
+D)true false
+
+Correct answer is : C
+
+Explanations :Creating a new instance of the class File, you're not yet making an actual file, you're just creating a filename.
+
+So file.exists() return false.
+
+FileWriter fw = new FileWriter(file) do three things:
+
+It created a FileWriter reference variable fw.
+
+It created a FileWriter object, and assigned it to fw.
+
+It created an actual empty file out on the disk.
+
+So file.exists() return true.
+
+Questions no -42 
+When comparing java.io.BufferedWriter and java.io.FileWriter, which capability exist as a method in only one of two ?
+
+
+
+
+options
+A)closing the stream
+B)flushing the stream
+C)writting to the stream
+D)writting a line separator to the stream
+
+Correct answer is : D
+
+Explanations :A newLine() method is provided in BufferedWriter which is not in FileWriter.
+
+Questions no -43 
+What is the output for the below code ?
+public class Test{
+
+public static void main(String[] args) {
+  int i1=1;
+ switch(i1){
+     case 1:
+              System.out.println("one");
+     case 2:
+              System.out.println("two");
+     case 3:
+              System.out.println("three");
+}
+}
+}
+
+
+options
+A)one two three
+B)one
+C)one two
+D)Compile error.
+
+Correct answer is : A
+
+Explanations : There is no break statement in case 1 so it causes the below case statements to execute regardless of their values.
+
+Questions no -44 
+What is the output for the below code ?
+public class Test {
+	public static void main(String[] args) {
+		  char c = 'a';
+	
+		 switch(c){
+		     case 65:
+		              System.out.println("one");break;
+		     case 'a':
+		              System.out.println("two");break;
+		     case 3:
+		              System.out.println("three");
+		}
+		
+		}
+	
+
+}
+
+
+options
+A)one two three
+B)one
+C)two
+D)Compile error - char can't be in switch statement.
+
+Correct answer is : C
+
+Explanations : Compile properly and print two.
+
+Questions no -45 
+What is the output for the below code ?
+
+import java.util.NavigableMap;
+import java.util.concurrent.ConcurrentSkipListMap;
+
+
+public class Test {
+	public static void main(String... args) {
+        
+		
+		NavigableMap <Integer, String>navMap = new 
+        ConcurrentSkipListMap<Integer, String>();
+		
+		navMap.put(4, "April");
+		navMap.put(5, "May");
+		navMap.put(6, "June");
+		navMap.put(1, "January");
+		navMap.put(2, "February");
+		navMap.put(3, "March");
+
+        navMap.pollFirstEntry();
+        navMap.pollLastEntry();
+        navMap.pollFirstEntry();
+        System.out.println(navMap.size());
+
+
+	     	      
+	}
+}
+
+
+
+
+options
+A)Compile error : No method  name like pollFirstEntry() or pollLastEntry()
+B)3
+C)6
+D)4
+
+Correct answer is : B
+
+Explanations : 
+# pollFirstEntry() Removes and returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+# pollLastEntry() Removes and returns a key-value mapping associated with the greatest key in this map, or null if the map is empty.
+
+Questions no -46
+What is the output for the below code ?
+
+import java.util.NavigableMap;
+import java.util.concurrent.ConcurrentSkipListMap;
+
+
+public class Test {
+	public static void main(String... args) {
+        
+		
+		NavigableMap <Integer, String>navMap = new 
+        ConcurrentSkipListMap<Integer, String>();
+	
+        System.out.print(navMap.lastEntry());
+
+
+	     	      
+	}
+}
+
+
+
+options
+A)Compile error : No method  name like lastEntry()
+B)null
+C)NullPointerException
+D)0
+
+Correct answer is : B
+
+Explanations : lastEntry() Returns a key-value mapping associated with the greatest key in this map, or null if the map is empty.
+
+Questions no -47
+What is the output for the below code ?
+
+import java.util.NavigableMap;
+import java.util.concurrent.ConcurrentSkipListMap;
+
+public class Test {
+	public static void main(String... args) {
+        
+		
+		NavigableMap<Integer, String>navMap = new 
+        ConcurrentSkipListMap<Integer, String>();
+		
+		navMap.put(4, "April");
+		navMap.put(5, "May");
+		navMap.put(6, "June");
+		navMap.put(1, "January");
+		navMap.put(2, "February");
+	
+
+        System.out.print(navMap.ceilingKey(3));
+        
+
+
+	     	      
+	}
+}
+
+
+
+options
+A)Compile error : No method  name like ceilingKey()
+B)null
+C)NullPointerException
+D)4
+
+Correct answer is : D
+
+Explanations : Returns the least key greater than or equal to the given key, or null if there is no such key. 
+
+In the above case : 3 is not a key so return 4 (least key greater than or equal to the given key).
+
+Questions no -48
+What is the output for the below code ?
+
+import java.util.NavigableMap;
+import java.util.concurrent.ConcurrentSkipListMap;
+
+public class Test {
+	public static void main(String... args) {
+        
+		
+		NavigableMap<Integer, String>navMap = new 
+        ConcurrentSkipListMap<Integer, String>();
+		
+		navMap.put(4, "April");
+		navMap.put(5, "May");
+		navMap.put(6, "June");
+		navMap.put(1, "January");
+		navMap.put(2, "February");
+	
+
+        System.out.print(navMap.floorKey(3));
+        
+
+
+	     	      
+	}
+}
+
+
+options
+A)Compile error : No method  name like floorKey()
+B)null
+C)NullPointerException
+D)2
+
+Correct answer is : D
+
+Explanations : Returns the greatest key less than or equal to the given key, or null if there is no such key. 
+
+In the above case : 3 is not a key so return 2 (greatest key less than or equal to the given key).
+
+Questions no -49 
+What is the output for the below code ?
+
+public class Test {
+	public static void main(String... args) {
+        
+		
+		 List<Integer> lst = new ArrayList<Integer>();
+		 lst.add(34);
+		 lst.add(6);
+		 lst.add(6);
+		 lst.add(6);
+		 lst.add(6);
+		 lst.add(5);
+		         
+	        NavigableSet<Integer>  nvset = new TreeSet(lst);
+	        System.out.println(nvset.tailSet(6));
+	     	      
+	}
+}
+
+
+
+
+options
+A)Compile error : No method  name like tailSet()
+B)6 34
+C)5
+D)5 6 34
+
+Correct answer is : B
+
+Explanations : tailSet(6) Returns elements are greater than or equal to 6.
+
+Questions no -50 
+What is the output for the below code ?
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NavigableSet;
+import java.util.TreeSet;
+
+
+
+
+public class Test {
+	public static void main(String... args) {
+        
+		
+		List<Integer> lst = new ArrayList<Integer>();
+		 lst.add(34);
+		 lst.add(6);
+		 lst.add(6);
+		 lst.add(6);
+		 lst.add(6);
+		         
+	        NavigableSet<Integer>  nvset = new TreeSet(lst);
+	        nvset.pollFirst(); 
+	        nvset.pollLast();
+            System.out.println(nvset.size());
+
+
+	     	      
+	}
+}
+
+
+
+
+options
+A)Compile error : No method  name like pollFirst() or pollLast()
+B)0
+C)3
+D)5
+
+Correct answer is : B
+
+Explanations : 
+# pollFirst() Retrieves and removes the first (lowest) element, or returns null if this set is empty.
+# pollLast() Retrieves and removes the last (highest) element, or returns null if this set is empty.
+
+Questions no -51
+What is the output for the below code ?
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NavigableSet;
+import java.util.TreeSet;
+
+
+public class Test {
+	public static void main(String... args) {
+        
+		
+		 List<Integer> lst = new ArrayList<Integer>();
+		 lst.add(34);
+		 lst.add(6);
+		 lst.add(2);
+		 lst.add(8);
+	     lst.add(7);
+	     lst.add(10);
+	        
+	        NavigableSet<Integer>  nvset = new TreeSet(lst);
+	        System.out.println(nvset.lower(6)+" "+nvset.higher(6)+ " "+ nvset.lower(2));
+	      
+	}
+}
+
+
+
+options
+A)1 2 7 10 34 null
+B)2 7 null
+C)2 7 34
+D)1 2 7 10 34
+
+Correct answer is : B
+
+Explanations : 
+# lower() Returns the greatest element in this set strictly less than the given element, or null if there is no such element.
+# higher() Returns the least element in this set strictly greater than the given element, or null if there is no such element.
+
+Questions no -52
+What is the output for the below code ?
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.NavigableSet;
+import java.util.TreeSet;
+
+
+public class Test {
+	public static void main(String... args) {
+        
+		
+		 List<Integer> lst = new ArrayList<Integer>();
+		 lst.add(34);
+		 lst.add(6);
+		 lst.add(2);
+		 lst.add(8);
+	     lst.add(7);
+	     lst.add(10);
+	        
+	        NavigableSet<Integer>  nvset = new TreeSet(lst);
+	         System.out.println(nvset.headSet(10));
+
+	      
+	}
+}
+
+
+
+
+options
+A)Compile error : No method  name like headSet()
+B)2, 6, 7, 8, 10
+C)2, 6, 7, 8
+D)34
+
+Correct answer is : C
+
+Explanations : 
+# headSet(10) Returns the elements elements are strictly less than 10.
+# headSet(10,false) Returns the elements elements are strictly less than 10.
+# headSet(10,true) Returns the elements elements are strictly less than or equal to 10.
+
+Questions no -53 
+What is the output for the below code ?
+
+import java.io.Console;
+
+public class Test {
+	public static void main(String... args) {
+        
+		
+		Console con = System.console();
+		  boolean auth = false;
+		 
+		  if (con != null)
+		  {
+		    int count = 0;
+		    do
+		    {
+		      String uname = con.readLine(null);
+		      char[] pwd = con.readPassword("Enter %s's password: ", uname);
+		      
+		      con.writer().write("\n\n");  
+		    } while (!auth && ++count < 3);
+		  }
+
+
+
+	     	      
+	}
+}
+
+
+
+
+options
+A)NullPointerException
+B)It works properly
+C)Compile Error : No readPassword() method in Console class.
+D)null
+
+Correct answer is : A
+
+Explanations : passing a null argument to any method in Console class will cause a NullPointerException to be thrown.

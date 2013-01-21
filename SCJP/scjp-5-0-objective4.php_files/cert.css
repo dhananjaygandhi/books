@@ -1,0 +1,286 @@
+body{
+	margin-left: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+.text_format{
+	font-family: Verdana;
+	font-size: 13px;
+}
+#container_common{
+	border: 1px solid #b8b8b8;
+}
+.butt-format {
+	color: #050;
+	font-family: 'trebuchet ms', helvetica, sans-serif;
+	font-size: 18;
+	font-weight: bold;
+	background-color: #6633FF;
+	border: 1px solid;
+	border-top-color: #696;
+	border-left-color: #696;
+	border-right-color: #363;
+	border-bottom-color: #363;
+	width: 150;
+	height:30;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+pre {
+	clear: both;
+	overflow: auto;
+	background-color: #efefef;
+	/*width:100% !important;*/
+	width: 700px; /*for IE, which doesn't obey !important or width:100% on pre */
+	padding-bottom: 0 !important;
+	padding-bottom: 1.5em; /* for IE which doesn't make room at the bottom of the pre for a horizontal scrollbar */
+}
+.left_navigation_bar_heading{
+	background:#C0C0C0;
+	width:100pc;
+	text-align:center;
+	font: bold 12px Verdana;
+}
+.left_navigation_bar_sub_heading{
+	background:#EBDDE2;
+	width:100pc;
+	font-family: Verdana;
+	font-size: 13px;
+
+}
+.column-header {
+	background-color:#999;
+	padding:4px;
+	margin-bottom:4px;
+
+	font-size: 11px;
+	font-weight:bold;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:#ffffff;
+}
+h1{
+	font-size: 14px;
+	margin-left: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+h2{
+	font-size: 13px;
+	margin-left: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+h3{
+	font-weight:normal;
+	font-size: 12px;
+	margin-left: 0;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+#td_heading_normal
+{
+	font-size: 13px;
+	font-family: arial;
+	background-color:CECEF6;
+}
+#td_subheading_normal
+{
+	font-size: 12px;
+	font-family: arial;
+	background-color:ECE0F8;
+}
+
+
+#tablist{
+	padding: 3px 0;
+	margin-left: 0;
+	margin-bottom: 0;
+	margin-top: 0.1em;
+	font: bold 12px Verdana;
+}
+
+#tablist li{
+	list-style: none;
+	display: inline;
+	margin: 0;
+}
+
+#tablist li a
+{
+	text-decoration: none;
+	padding: 3px 0.5em;
+	margin-left: 3px;
+	border: 1px solid #778;
+	border-bottom: none;
+	background: white;
+}
+
+#tablist li a:link, #tablist li a:visited
+{
+	color: navy;
+}
+
+#tablist li a.current
+{
+	background: lightyellow;
+}
+
+
+.tabcontent
+{
+	display:none;
+}
+.link
+{
+	color: #22229C;
+	font: bold 13px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica;
+}
+
+
+
+/* ######### Style for Tab Interface itself ######### */
+
+.shadetabs
+{
+	border-bottom: 1px solid gray;
+	margin-bottom: 1em;
+}
+
+.shadetabs ul
+{
+	padding: 3px 0;
+	margin-left: 0;
+	margin-top: 1px;
+	margin-bottom: 0;
+	font: bold 12px Verdana;
+	list-style-type: none;
+	text-align: left; /*set to left, center, or right to align the menu as desired*/
+}
+
+.shadetabs li
+{
+	display: inline;
+	margin: 0;
+}
+
+.shadetabs li a
+{
+	text-decoration: none;
+	padding: 3px 7px;
+	margin-right: 3px;
+	border: 1px solid #778;
+	color: #2d2b2b;
+	background: white url(shade.gif) top left repeat-x; /*THEME CHANGE HERE*/
+}
+
+.shadetabs li a:visited
+{
+	color: #2d2b2b;
+}
+
+.shadetabs li a:hover
+{
+	text-decoration: underline;
+	color: #2d2b2b;
+}
+
+.shadetabs li.selected a
+{ /*selected main tab style */
+	background-image: url(shadeactive.gif); /*THEME CHANGE HERE*/
+	border-bottom-color: white;
+}
+
+.shadetabs li.selected a:hover
+{ /*selected main tab style */
+	text-decoration: none;
+}
+
+/* ######### Style for Drop Down Menu ######### */
+
+.dropmenudiv
+{
+	position:absolute;
+	top: 0;
+	border: 1px solid #918d8d; /*THEME CHANGE HERE*/
+	border-width: 0 1px;
+	font:normal 12px Verdana;
+	line-height:18px;
+	z-index:100;
+	background-color: white;
+	width: 200px;
+	visibility: hidden;
+}
+
+
+.dropmenudiv a
+{
+	width: auto;
+	display: block;
+	text-indent: 3px;
+	border-bottom: 1px solid #918d8d; /*THEME CHANGE HERE*/
+	padding: 2px 0;
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+}
+
+* html .dropmenudiv a
+{ /*IE only hack*/
+	width: 100%;
+}
+
+.dropmenudiv a:hover
+{ /*THEME CHANGE HERE*/
+	background-color: #e8fad5;
+}
+
+#tablist
+{
+	padding: 3px 0;
+	margin-left: 0;
+	margin-bottom: 0;
+	margin-top: 0.1em;
+	font: bold 12px Verdana;
+}
+#tablist li
+{
+	list-style: none;
+	display: inline;
+	margin: 0;
+}
+#tablist li a
+{
+	text-decoration: none;
+	padding: 3px 0.5em;
+	margin-left: 3px;
+	border: 1px solid #778;
+	border-bottom: none;
+	background: white;
+}
+#tablist li a:link, #tablist li a:visited
+{
+	color: navy;
+}
+#tablist li a:hover
+{
+	color: #000000;
+	background: #C1C1FF;
+	border-color: #227;
+}
+#tablist li a.current
+{
+	background: lightyellow;
+}
+hr.dark 
+{
+	border:dotted;
+	border-bottom-width:2px;
+	border-bottom-color:#3366CC;
+	border-top:0px;
+	border-right:0px;
+	border-left:0px;
+	margin-top:3px;
+	margin-bottom:5px;
+}
+
+
